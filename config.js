@@ -1,7 +1,8 @@
 
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 
 const firebaseConfig = {
@@ -16,5 +17,5 @@ const firebaseConfig = {
 
 
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export  const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
