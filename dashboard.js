@@ -121,7 +121,7 @@ export async function readdata() {
 export function renderdata() {
     display.innerHTML = "";
     if (blog_arr.length === 0) {
-      display.innerHTML = "No data found";
+      display.innerHTML = "No Blog found yet";
       return;
     }
     blog_arr.map((items) => {

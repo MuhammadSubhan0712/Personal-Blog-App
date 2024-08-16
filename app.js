@@ -14,14 +14,14 @@ import { auth , db } from "./config.js";
 const display = document.querySelector("#main");
 
 
-let Alldata = [];
+let Allblogs = [];
 
 // Asynchronous Function to read the data:
  async function readdata() {
     const q = query(collection(db , "blogs"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      Alldata.push({ ...doc.data() , id: doc.id });
+      Allblogs.push({ ...doc.data() , id: doc.id });
     });
     console.log(blog_arr);
     renderdata();
@@ -30,15 +30,15 @@ let Alldata = [];
   readdata();
 
 
-  
+
   // Function to render todo data on the browser:
  function renderdata() {
     display.innerHTML = "";
-    if (Alldata.length === 0) {
-      display.innerHTML = "No data found";
+    if (Allblogs.length === 0) {
+      display.innerHTML = "No Blog Yet";
       return;
     }
-    Alldata.map((items) => {
+    Allblogs.map((items) => {
       display.innerHTML +=`
     <div class="flex flex-col lg:flex-row gap-8">
     <article class="flex-1">
