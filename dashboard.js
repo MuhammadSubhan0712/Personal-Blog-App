@@ -69,6 +69,7 @@ let blog_arr = [];
 
 
 
+
 // Add Event listener blog form:
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
