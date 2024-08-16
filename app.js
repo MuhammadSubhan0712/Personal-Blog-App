@@ -21,12 +21,12 @@ let Allblogs = [];
     const q = query(collection(db , "blogs"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
       Allblogs.push({ ...doc.data() , id: doc.id });
     });
-    console.log(blog_arr);
+    // console.log(blog_arr);
     renderdata();
   }
-  
   readdata();
 
 
@@ -38,13 +38,13 @@ let Allblogs = [];
       display.innerHTML = "No Blog Yet";
       return;
     }
-    Allblogs.map((items) => {
+    Allblogs.map((blog_arr) => {
       display.innerHTML +=`
     <div class="flex flex-col lg:flex-row gap-8">
     <article class="flex-1">
-        <h2 class="text-4xl font-bold mb-4">${items.Placeholder}</h2>
+        <h2 class="text-4xl font-bold mb-4">${blog_arr.Placeholder}</h2>
         <div class="prose max-w-none mb-8">
-            <p>${items.Blog}</p>
+            <p>${blog_arr.Blog}</p>
         </div>
     </article>
     </div>`;

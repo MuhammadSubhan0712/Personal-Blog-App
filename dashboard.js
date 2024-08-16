@@ -136,7 +136,7 @@ export function renderdata() {
         <div class="flex space-x-4">
             <button id="edit-btn" class="btn btn-primary">Edit</button>
             <button id="delete-btn" class="btn btn-danger">Delete</button>
-        </div>
+        </div></br>
     <p> ${items.time ? items.time.toDate() : "no time"}</p>
     </article>
     </div>`;
