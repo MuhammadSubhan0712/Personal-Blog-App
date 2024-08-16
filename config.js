@@ -8,6 +8,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.5/firebas
 
 
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyB-zfmyupSOv3n600pz7f3Wxe-FNy7o_4Q",
   authDomain: "personal-blog-app-63f23.firebaseapp.com",
