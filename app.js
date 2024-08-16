@@ -30,6 +30,7 @@ let Alldata = [];
   readdata();
 
 
+  
   // Function to render todo data on the browser:
  function renderdata() {
     display.innerHTML = "";
