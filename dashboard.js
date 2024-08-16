@@ -1,4 +1,3 @@
-
 import {
     getAuth,
     onAuthStateChanged,
@@ -78,6 +77,7 @@ form.addEventListener("submit", async (event) => {
       const docRef = await addDoc(collection(db, "blogs"), {
         Placeholder: placeholder.value,
         Blog: blog.value,
+       time: Timestamp.fromDate(new Date()),
       });
   
       console.log("Document written with ID: ", docRef.id)
@@ -85,6 +85,7 @@ form.addEventListener("submit", async (event) => {
         Placeholder: placeholder.value,
         id: docRef.id,
         Blog: blog.value,
+        time: Timestamp.fromDate(new Date()),
       });
   
   renderdata();
@@ -100,7 +101,7 @@ form.addEventListener("submit", async (event) => {
 // Asynchronous Function to read the data:
 export async function readdata() {
     blog_arr = [];
-    const q = query(collection(db , "blogs"));
+    const q = query(collection(db , "blogs" ) , orderBy ("time" , "desc"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       blog_arr.push({ ...doc.data() , id: doc.id });
@@ -136,6 +137,7 @@ export function renderdata() {
             <button id="edit-btn" class="btn btn-primary">Edit</button>
             <button id="delete-btn" class="btn btn-danger">Delete</button>
         </div>
+    <p> ${items.time ? items.time.toDate() : "no time"}</p>
     </article>
     </div>`;
     });

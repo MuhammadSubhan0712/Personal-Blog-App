@@ -45,6 +45,7 @@ form.addEventListener("submit", (event) => {
       lname.value = "";
       email.value = "";
       password.value = "";
+      window.location = "login.html";
     })
 
     .catch((error) => {
