@@ -7,6 +7,7 @@ import {auth} from "./config.js"
 
 
 
+
 // Declares Variables
 
 let form = document.querySelector("#form");
