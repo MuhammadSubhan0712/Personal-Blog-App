@@ -33,8 +33,6 @@ form.addEventListener("submit", (event) => {
   const auth = getAuth();
   createUserWithEmailAndPassword(
     auth,
-    // fname.value,
-    // lname.value,
     email.value,
     password.value
   )

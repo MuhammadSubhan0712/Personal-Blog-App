@@ -19,26 +19,29 @@
 
 
 
-  <body class="bg-gray-400 flex flex-col items-center h-screen">
+  <body class="bg-base-300 flex flex-col h-screen">
     <!-- ------------------------------------------------------------- -->
 
-    <!-- Navbar -->
-    <div class="navbar bg-primary text-white w-full">
-      <div class="flex-1">
-        <a class="normal-case text-xl font-bold font-serif"
-          >Personal Bloggging App</a
-        >
+
+    <div class=" bg-primary text-white w-full h-10 p-2 flex justify-around">
+      <div class="">
+        <a class="normal-case text-xl font-bold"
+          >Personal Blogging App</a>
 
       </div>
-      <div class="flex-none text-x1 font-serif">
+      <div class="text-xl font-bold">
        <button><a href="./register.html">SignUp</a></button>
-      </div>
+      </div> 
     </div>
+ 
+        <h1 class="text-4xl flex justify-center font-bold bg-white w-full p-2  mt-5">
+            Login
+        </h1>
 
     <!-- ------------------------------------------------------------- -->
 
     <!--login  Form -->
-    
+  
     <div class="flex-grow flex items-center justify-center w-full">
       <div class="w-full max-w-xs">
         <form id="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -47,12 +50,7 @@
           <!-- For Email -->
 
           <div class="mb-4">
-            <label
-              for="email"
-              class="block text-gray-700 text-sm font-bold mb-2"
-              >Email</label
-            >
-
+        
             <input
               id="email"
               type="email"
@@ -60,14 +58,10 @@
               placeholder="Enter your Email" />
           </div>
 
+        
           <!-- For Password -->
 
           <div class="mb-6">
-            <label
-              for="password"
-              class="block text-gray-700 text-sm font-bold mb-2"
-              >Password</label
-            >
 
             <input
               id="password"
@@ -82,10 +76,6 @@
             <button type="submit" class="btn btn-primary">Login</button>
           </div>
 
-<!-- 
-          <div class="flex items-center justify-between mt-5">
-            <a href="./register.html" class="link link-primary"> Not a User </a>
-          </div> -->
         </form>
       </div>
     </div>

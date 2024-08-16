@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+
+
+    <!-- Tailwind CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+
+    <!-- Daisyui CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css"
+      rel="stylesheet" />
+  </head>
+
+
+  <body class="relative bg-base-200 flex flex-col items-center h-screen">
+
+
+    <div class=" bg-primary text-white w-full h-10 p-2 flex justify-around">
+        <div class="">
+          <a class="normal-case text-xl font-bold"
+            >Personal Blogging App</a>
+  
+        </div>
+        <div class="text-xl font-bold">
+         <button id="logout-btn"><a href="./login.html">Logout</a></button>
+        </div> 
+      </div>
+   
+          <h1 class="text-4xl flex justify-center font-bold bg-white w-full p-2  mt-5">
+              Dashboard
+          </h1>
+  
+
+    <!-- ------------------------------------------------------------- -->
+
+    <!-- Dashboard form -->
+    <div class="w-full max-w-lg mt-5">
+      <form id="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+
+        <!-- Placeholder  -->
+        <div class="mb-4">
+    
+          <input
+            id="placeholder"
+            class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            placeholder="placeholder" />
+        </div>
+
+        <!-- Blog area -->
+        <div class="mb-4">
+          <input class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="blog" id="blog" placeholder="What is in your mind"></input>
+        </div>
+
+      
+        <!-- Publish Button -->
+        <div class="flex items-center justify-start">
+          <button type="submit" class="btn btn-primary ">Publish Blog</button>
+        </div>
+      </form>
+    </div>
+ 
+
+    <!-- To render the blog -->
+    <main id="main" class="container flex justify-center  mx-auto py-8">
+    
+    </main>
+
+
+ 
+    <!-- ------------------------------------------------------------- -->
+
+    <script type="module" src="dashboard.js"></script>
+  </body>
+</html>

@@ -18,21 +18,25 @@
   </head>
 
 
+  <body class="bg-base-300 flex flex-col h-screen">
 
-  <body class="relative bg-gray-400 flex flex-col items-center h-full">
-    <!-- Navbar -->
-    <div class="navbar bg-primary text-white w-full">
-      <div class="flex-1">
-        <a class="normal-case text-xl font-bold font-serif"
-          >Personal Bloggging App</a
-        >
-      </div>
-      <div class="flex-none text-x1 font-serif">
-        <div class="flex-none text-x1 font-serif">
-         <button><a href="./login.html">Login</a></button>
+
+  
+    <div class=" bg-primary text-white w-full h-10 p-2 flex justify-around">
+        <div class="">
+          <a class="normal-case text-xl font-bold"
+            >Personal Blogging App</a>
+  
         </div>
+        <div class="text-xl font-bold">
+         <button><a href="./register.html">Login</a></button>
+        </div> 
       </div>
-    </div>
+   
+          <h1 class="text-4xl flex justify-center font-bold bg-white w-full p-2  mt-5">
+              SignUp
+          </h1>
+  
 
     <!-- ------------------------------------------------------------- -->
 
@@ -43,9 +47,7 @@
 
         <!-- First Name -->
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="fname"
-            >First Name</label
-          >
+    
           <input
             id="fname"
             class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -55,9 +57,6 @@
 
         <!-- Last Name -->
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="lname"
-            >Last Name</label
-          >
           <input
             id="lname"
             class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -67,9 +66,7 @@
 
         <!-- Email -->
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="email"
-            >Email</label
-          >
+       
           <input
             id="email"
             class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -79,11 +76,6 @@
 
         <!-- Password -->
         <div class="mb-6">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="password"
-            >Password</label
-          >
           <input
             id="password"
             class="input input-bordered w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -91,35 +83,11 @@
             placeholder="******************" />
         </div>
 
-        <!-- To Choose File -->
-        <div class="mb-6">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="file"
-            >Choose File</label
-          >
-          <input
-            type="file"
-            class="input input-bordered w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Choose file" />
-        </div>
-
         <!-- Register Button -->
         <div class="flex items-center justify-center">
           <button type="submit" class="btn btn-success w-full">Register</button>
         </div>
 
-        <!-- Register with Google Button -->
-        <div class="flex items-center justify-center mt-7">
-          <button id="google-btn" class="btn btn-primary w-full">
-            <i class="fab fa-google mr-2"></i>Register with Google
-          </button>
-        </div>
-
-        <!-- Already a User -->
-        <div class="flex items-center justify-center mt-5">
-          <a href="./login.html" class="link link-primary"
-            >Already a User? Login</a
-          >
-        </div>
       </form>
     </div>
 
