@@ -124,8 +124,7 @@ export function renderdata() {
     }
     blog_arr.map((items) => {
       display.innerHTML +=`
-    <br>
-    <hr>
+
     <div class="flex flex-col lg:flex-row gap-8">
     <article class="flex-1">
         <h2 class="text-4xl font-bold mb-4">${items.Placeholder}</h2>
@@ -151,11 +150,11 @@ const editBtn = document.querySelectorAll("#edit-btn");
 editBtn.forEach((btn , index) =>{
   btn.addEventListener("click" , async () => {
    const updatepl = prompt("Enter placeholder to update");
-   const toUpdatepl = doc(db, "blogs", blog_arr[index].id);
    const updatebl = prompt("Enter blog to update");
-   const toUpdatebl = doc(db, "blogs", blog_arr[index].id);
 
-await updateDoc(toUpdatepl, toUpdatebl, {
+   const toUpdate = doc(db, "blogs", blog_arr[index].id);
+
+await updateDoc(toUpdate, {
   Placeholder : updatepl,
   Blog : updatebl,
 });
@@ -179,8 +178,8 @@ deleteBtn.forEach((btn , index) => {
 btn.addEventListener("click" , async () => {
 
   await deleteDoc(doc(db, "blogs", blog_arr[index].id));
-  console.log("Data Deleted Successfully");
-
+  console.log("Blog Deleted successfully");
+  display.innerHTML = `Blog Deleted successfully`
   blog_arr.splice(index , 1);
   renderdata();
 });
