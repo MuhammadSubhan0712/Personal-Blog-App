@@ -12,6 +12,7 @@ import {
 import { auth } from "./config.js";
 
 
+
 // Declare Variables
 
 const form = document.querySelector("#form");
