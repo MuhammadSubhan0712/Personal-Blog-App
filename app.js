@@ -45,7 +45,8 @@ let Allblogs = [];
         <h2 class="text-4xl font-bold mb-4">${blog_arr.Placeholder}</h2>
         <div class="prose max-w-none mb-8">
             <p>${blog_arr.Blog}</p>
-        </div>
+        </div> 
+    <p> ${blog_arr.time ? blog_arr.time.toDate() : "no time"}</p>
     </article>
     </div>`;
     });
