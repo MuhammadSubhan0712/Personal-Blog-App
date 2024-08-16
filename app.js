@@ -8,21 +8,20 @@
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 
-
-import { readdata , renderdata } from "./dashboard.js";
-
-
-display = document.querySelector("#main");
+import { auth , db } from "./config.js";
 
 
+const display = document.querySelector("#main");
+
+
+let Alldata = [];
 
 // Asynchronous Function to read the data:
-async function readdata() {
-    blog_arr = [];
+ async function readdata() {
     const q = query(collection(db , "blogs"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      blog_arr.push({ ...doc.data() , id: doc.id });
+      Alldata.push({ ...doc.data() , id: doc.id });
     });
     console.log(blog_arr);
     renderdata();
@@ -32,16 +31,14 @@ async function readdata() {
 
 
   // Function to render todo data on the browser:
-export function renderdata() {
+ function renderdata() {
     display.innerHTML = "";
-    if (blog_arr.length === 0) {
+    if (Alldata.length === 0) {
       display.innerHTML = "No data found";
       return;
     }
-    blog_arr.map((items) => {
+    Alldata.map((items) => {
       display.innerHTML +=`
-    <br>
-    <hr>
     <div class="flex flex-col lg:flex-row gap-8">
     <article class="flex-1">
         <h2 class="text-4xl font-bold mb-4">${items.Placeholder}</h2>
