@@ -18,62 +18,60 @@
   </head>
 
 
-  <body class="relative flex flex-col items-center h-full">
+  <body class="relative flex flex-col items-center min-h-screen bg-base-300">
 
+    <!-- Navbar -->
+    <div class="bg-primary text-white w-full h-12 p-3 flex justify-between items-center shadow-lg">
+        <a href="./index.html" class="text-2xl font-extrabold tracking-wide">Personal Blogging App</a>
 
-    <div class=" bg-primary text-white w-full h-10 p-2 flex justify-around">
-        <div class="">
-          <a class="normal-case text-xl font-bold"
-            >Personal Blogging App</a>
-  
-        </div>
-        <div class="text-xl font-bold">
-         <button id="logout-btn">Logout</a></button>
-        </div> 
-      </div>
-   
-          <h1 class="text-4xl flex justify-center font-bold bg-white w-full p-2  mt-5">
-              Dashboard
-          </h1>
-  
-
-    <!-- ------------------------------------------------------------- -->
-
-    <!-- Dashboard form -->
-    <div class="w-full max-w-lg mt-5">
-      <form id="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-
-
-        <!-- Placeholder  -->
-        <div class="mb-4">
-    
-          <input
-            id="placeholder"
-            class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="placeholder" />
-        </div>
-
-        <!-- Blog area -->
-        <div class="mb-4">
-          <input class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="blog" id="blog" placeholder="What is in your mind"></input>
-        </div>
-
-      
-        <!-- Publish Button -->
-        <div class="flex items-center justify-start">
-          <button type="submit" class="btn btn-primary ">Publish Blog</button>
-        </div>
-      </form>
+        <button id="logout-btn" class="bg-white text-primary font-semibold px-4 py-1 rounded-md transition duration-300 hover:bg-gray-200">
+            Logout
+        </button>
     </div>
- 
 
+    <!-- Dashboard Heading -->
+    <h1 class="text-5xl text-center font-extrabold bg-white w-full p-4 mt-6 shadow-md">
+        Dashboard 📋
+    </h1>
 
+    <!-- Dashboard Form -->
+    <div class="w-full max-w-lg mt-8 px-4">
+        <form id="form" class="bg-white mb-5 shadow-2xl rounded-lg px-8 pt-8 pb-10">
+            
+            <!-- Placeholder -->
+            <div class="mb-4">
+                <input id="placeholder" type="text"
+                    class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" 
+                    placeholder="Title of your blog" />
+            </div>
 
-    <!-- To render the blog -->
-    <main id="main" class="container flex flex-col bg-base-300 max-w-lg bg-white text-black gap-8 justify-center mx-auto py-8 px-8">
-    </main>
+            <!-- Blog Content -->
+            <div class="mb-4">
+                <textarea id="blog" name="blog"
+                    class="textarea textarea-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" 
+                    placeholder="What’s on your mind?"></textarea>
+            </div>
 
+            <!-- Publish Button -->
+            <div class="flex justify-center">
+                <button type="submit" class="btn btn-primary w-full py-3 rounded-lg text-lg font-semibold transition duration-300 hover:bg-opacity-90">
+                    Publish Blog 🚀
+                </button>
+            </div>
+        </form>
+    </div>
+
+   <!-- Blog Render Section -->
+<div class="w-full max-w-lg mt-10 text-center">
+  <h2 class="text-3xl font-bold text-primary bg-white p-4 rounded-md shadow-md">
+      Your Blogs 📝
+  </h2>
+</div>
+
+<!-- Blog Container -->
+<main id="main" class="container mt-6 flex flex-col max-w-lg w-full bg-white text-black gap-6 justify-center mx-auto py-8 px-6 shadow-md rounded-lg">
+  <!-- Blogs will be dynamically rendered here -->
+</main>
 
  
     <!-- ------------------------------------------------------------- -->

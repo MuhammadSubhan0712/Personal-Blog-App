@@ -20,67 +20,51 @@
   
 
 
-  <body class="bg-base-300 flex flex-col h-screen">
-    <!-- ------------------------------------------------------------- -->
+  <body class="bg-base-300 flex flex-col min-h-screen">
 
+    <!-- Navbar -->
+    <div class="bg-primary text-white w-full h-12 p-3 flex justify-between items-center shadow-lg">
+        <a href="./index.html" class="text-2xl font-extrabold tracking-wide">Personal Blogging App</a>
 
-    <div class=" bg-primary text-white w-full h-10 p-2 flex justify-around">
-      <div class="">
-        <a class="normal-case text-xl font-bold"
-          >Personal Blogging App</a>
-
-      </div>
-      <div class="text-xl font-bold">
-       <button><a href="./register.html">SignUp</a></button>
-      </div> 
-    </div>
- 
-        <h1 class="text-4xl flex justify-center font-bold bg-white w-full p-2  mt-5">
-            Login
-        </h1>
-
-    <!-- ------------------------------------------------------------- -->
-
-    <!--login  Form -->
-  
-    <div class="flex-grow flex items-center justify-center w-full">
-      <div class="w-full max-w-xs">
-        <form id="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-
-
-          <!-- For Email -->
-
-          <div class="mb-4">
-        
-            <input
-              id="email"
-              type="email"
-              class="input input-bordered w-full"
-              placeholder="Enter your Email" />
-          </div>
-
-        
-          <!-- For Password -->
-
-          <div class="mb-6">
-
-            <input
-              id="password"
-              type="password"
-              class="input input-bordered w-full mb-3"
-              placeholder="Enter your Password" />
-          </div>
-
-          <!-- Login Button -->
-
-          <div class="flex items-center justify-between">
-            <button type="submit" class="btn btn-primary">Login</button>
-          </div>
-
-        </form>
-      </div>
+        <button class="bg-white text-primary font-semibold px-4 py-1 rounded-md transition duration-300 hover:bg-gray-200">
+            <a href="./register.html">Sign Up</a>
+        </button>
     </div>
 
+    <!-- Heading -->
+    <h1 class="text-5xl text-center font-extrabold bg-white w-full p-4 mt-6 shadow-md">
+        Login 🔑
+    </h1>
+
+    <!-- Login Form Section -->
+    <div class="flex-grow flex items-center justify-center w-full px-4">
+        <div class="w-full max-w-sm">
+            <form id="form" class="bg-white shadow-xl rounded-lg px-8 pt-8 pb-10">
+                
+                <!-- Email Input -->
+                <div class="mb-4">
+                    <input id="email" type="email" 
+                        class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" 
+                        placeholder="Enter your Email" required />
+                </div>
+
+                <!-- Password Input -->
+                <div class="mb-6">
+                    <input id="password" type="password" 
+                        class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" 
+                        placeholder="Enter your Password" required/>
+                </div>
+
+                <!-- Login Button -->
+                <div class="flex items-center justify-center">
+                    <button type="submit" class="btn btn-primary w-full py-3 rounded-lg text-lg font-semibold transition duration-300 hover:bg-opacity-90">
+                        Login
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
     <!-- ------------------------------------------------------------- -->
 
     <!-- Script tag -->

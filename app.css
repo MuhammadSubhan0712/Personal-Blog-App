@@ -1,0 +1,44 @@
+/* :root {
+    --primary: #4f46e5;
+    --secondary: #f43f5e;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8fafc;
+  }
+  
+  .gradient-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+  }
+  
+  .blog-card {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+  }
+  
+  .btn-primary:hover {
+    background-color: #4338ca;
+  }
+  
+  .text-primary {
+    color: var(--primary);
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  } */

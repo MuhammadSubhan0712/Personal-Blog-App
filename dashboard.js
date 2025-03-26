@@ -126,20 +126,22 @@ export function renderdata() {
     }
     blog_arr.map((items) => {
       display.innerHTML +=`
-
     <div class="flex flex-col lg:flex-row gap-8">
     <article class="flex-1">
         <h2 class="text-4xl font-bold mb-4">${items.Placeholder}</h2>
         <div class="prose max-w-none mb-8">
             <p>${items.Blog}</p>
         </div>
-        <div class="flex space-x-4">
+      
+    <p> ${items.time ? items.time.toDate() : "no time"}</p>
+    </br>
+      <div class="flex space-x-4">
             <button id="edit-btn" class="btn btn-primary">Edit</button>
             <button id="delete-btn" class="btn btn-danger">Delete</button>
-        </div></br>
-    <p> ${items.time ? items.time.toDate() : "no time"}</p>
+        </div>
     </article>
-    </div>`;
+    </div>
+    <hr/>`;
     });
     
   // ---------------------------------------------------------

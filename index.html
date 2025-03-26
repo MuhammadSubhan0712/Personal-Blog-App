@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Readers</title>
+    <title>Blogging App</title>
 
 
     <!-- Tailwind CDN -->
@@ -18,34 +18,26 @@
   </head>
 
 
-  <body class="relative bg-base-300 flex flex-col items-center h-screen">
+  <body class="relative bg-base-300 flex flex-col items-center min-h-screen">
 
+    <!-- Navbar -->
+    <div class="bg-primary text-white w-full h-12 p-3 flex justify-between items-center shadow-lg">
+        <a class="text-2xl font-extrabold tracking-wide">Personal Blogging App</a>
 
-    <div class=" bg-primary text-white w-full h-10 p-2 flex justify-around">
-        <div class="">
-          <a class="normal-case text-xl font-bold"
-            >Personal Blogging App</a>
-  
+        <button id="logout-btn" class="bg-white text-primary font-semibold px-4 py-1 rounded-md transition duration-300 hover:bg-gray-200">
+            <a href="./login.html">Login</a>
+        </button>
+    </div>
 
-        </div>
-        <div class="text-xl font-bold">
-         <button id="logout-btn"><a href="./login.html">login</a></button>
-        </div> 
-      </div>
-   
-          <h1 class="text-4xl flex justify-center font-bold bg-white w-full p-2  mt-5">
-              Good Morning Readers
-          </h1>
-  
+    <!-- Heading -->
+    <h1 class="text-5xl text-center font-extrabold bg-white w-full p-4 mt-6 shadow-md">
+        Good Morning, Readers! ☀️
+    </h1>
 
-    <!-- ------------------------------------------------------------- -->
-
-    <!-- To render the blog -->
-    <main id="main" class="container mt-12 flex flex-col max-w-lg bg-white text-black gap-8 justify-center mx-auto px-8 py-8">
-    
-
+    <!-- Blog Section -->
+    <main id="main" class="container mt-12 flex flex-col w-full max-w-3xl bg-white text-black gap-8 justify-center mx-auto px-10 py-10 shadow-lg rounded-xl">
+        <!-- Blog content will be rendered here -->
     </main>
-
 
  
     <!-- ------------------------------------------------------------- -->
