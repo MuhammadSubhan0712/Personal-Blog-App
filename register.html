@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>register</title>
 
-
     <!-- Tailwind CDN -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -17,64 +16,82 @@
       rel="stylesheet" />
   </head>
 
-
   <body class="bg-base-300 flex flex-col min-h-screen items-center">
-
     <!-- Navbar -->
-    <div class="bg-primary text-white w-full h-12 p-3 flex justify-between items-center shadow-lg">
-        <a href="./index.html" class="text-2xl font-extrabold tracking-wide">Personal Blogging App</a>
+    <div
+      class="bg-primary text-white w-full h-12 p-3 flex justify-between items-center shadow-lg">
+      <a href="./index.html" class="text-2xl font-extrabold tracking-wide"
+        >Personal Blogging App</a
+      >
 
-        <button class="bg-white text-primary font-semibold px-4 py-1 rounded-md transition duration-300 hover:bg-gray-200">
-            <a href="./login.html">Login</a>
-        </button>
+      <button
+        class="bg-white text-primary font-semibold px-4 py-1 rounded-md transition duration-300 hover:bg-gray-200">
+        <a href="./login.html">Login</a>
+      </button>
     </div>
 
     <!-- Heading -->
-    <h1 class="text-5xl text-center font-extrabold bg-white w-full p-4 mt-6 shadow-md">
-        Sign Up 📝
+    <h1
+      class="text-5xl text-center font-extrabold bg-white w-full p-4 mt-6 shadow-md">
+      Sign Up 📝
     </h1>
 
     <!-- Register Form Section -->
     <div class="w-full max-w-lg mt-8 px-4">
-        <form id="form" class="bg-white shadow-2xl rounded-lg px-8 pt-8 pb-10">
-            <h1 class="text-center text-3xl font-extrabold mb-6 text-gray-700">Create an Account</h1>
+      <form id="form" class="bg-white shadow-2xl rounded-lg px-8 pt-8 pb-10">
+        <h1 class="text-center text-3xl font-extrabold mb-6 text-gray-700">
+          Create an Account
+        </h1>
 
-            <!-- First Name -->
-            <div class="mb-4">
-                <input id="fname" type="text"
-                    class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" 
-                    placeholder="First Name" required />
-            </div>
+        <!-- First Name -->
+        <div class="mb-4">
+          <input
+            id="fname"
+            type="text"
+            class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="First Name"
+            required />
+        </div>
 
-            <!-- Last Name -->
-            <div class="mb-4">
-                <input id="lname" type="text"
-                    class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" 
-                    placeholder="Last Name" required />
-            </div>
+        <!-- Last Name -->
+        <div class="mb-4">
+          <input
+            id="lname"
+            type="text"
+            class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Last Name"
+            required />
+        </div>
 
-            <!-- Email -->
-            <div class="mb-4">
-                <input id="email" type="email"
-                    class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" 
-                    placeholder="Email Address" required />
-            </div>
+        <!-- Email -->
+        <div class="mb-4">
+          <input
+            id="email"
+            type="email"
+            class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Email Address"
+            required />
+        </div>
 
-            <!-- Password -->
-            <div class="mb-6">
-                <input id="password" type="password"
-                    class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" 
-                    placeholder="Create Password" required />
-            </div>
+        <!-- Password -->
+        <div class="mb-6">
+          <input
+            id="password"
+            type="password"
+            class="input input-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Create Password"
+            required />
+        </div>
 
-            <!-- Register Button -->
-            <div class="flex items-center justify-center">
-                <button type="submit" class="btn btn-success w-full py-3 rounded-lg text-lg font-semibold transition duration-300 hover:bg-opacity-90">
-                    Register 🚀
-                </button>
-            </div>
-
-        </form>
+        <!-- Register Button -->
+        <div class="flex items-center justify-center">
+          <button
+            type="submit"
+            class="btn btn-success w-full py-3 rounded-lg text-lg font-semibold transition duration-300 hover:bg-opacity-90">
+            Register 🚀
+          </button>
+        </div>
+      </form>
     </div>
 
     <!-- Signup Error Message -->

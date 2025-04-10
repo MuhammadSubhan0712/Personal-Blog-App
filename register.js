@@ -1,15 +1,15 @@
 // Import function of firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
-
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
+import { 
+  collection, 
+  addDoc 
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-import { auth } from "./config.js";
+import { auth , db } from "./config.js";
 
 
 
@@ -29,33 +29,40 @@ const display = document.querySelector("#para");
 
 
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const auth = getAuth();
-  createUserWithEmailAndPassword(
-    auth,
-    email.value,
-    password.value
-  )
-    .then((userCredential) => {
+
+  try {
+   const userCredential = await 
+   createUserWithEmailAndPassword(
+     auth,
+     email.value,
+     password.value
+   );
       const user = userCredential.user;
-      console.log(user);
+
+      // Here store user info in firestore
+      await addDoc (collection (db , "users") ,{
+        uid: user.uid,
+        firstName : fname.value,
+        lastName : lname.value,
+        email: email.value
+      });
+
       display.innerHTML = " Registration Done successfully ";
       fname.value = "";
       lname.value = "";
       email.value = "";
       password.value = "";
       window.location = "login.html";
-    })
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
 
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
 
-      console.log(errorCode);
-      console.log(errorMessage);
-
-      display.innerHTML = `${errorMessage}`;
-    });
+    display.innerHTML = `${errorMessage}`;
+  }
 });
-
