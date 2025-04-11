@@ -27,7 +27,9 @@ readdata();
 function renderdata() {
   display.innerHTML = "";
   if (Allblogs.length === 0) {
-    display.innerHTML = "No Blog Yet";
+    display.innerHTML =`<div class="bg-gray-700 mt-5 rounded-xl flex justify-center items-center">
+    <h2 class="text-white p-2 text-2xl">!!No Blog Added Yet!!</h2>
+    </div>`;
     return;
   }
   Allblogs.map((blog_arr) => {

@@ -48,7 +48,7 @@ logout.addEventListener("click", () => {
     });
 });
 
-// Declares the dashboard form variables:
+// Declares the dashboard variables:
 const form = document.querySelector("#form");
 
 const placeholder = document.querySelector("#placeholder");
@@ -56,6 +56,10 @@ const placeholder = document.querySelector("#placeholder");
 const blog = document.querySelector("#blog");
 
 const display = document.querySelector("#main");
+
+const noBlog = document.querySelector("#noblog");
+
+const blogHead = document.querySelector("#bloghead");
 
 let blog_arr = [];
 
@@ -118,21 +122,47 @@ export async function readdata() {
 export function renderdata() {
   display.innerHTML = "";
 
+  if (!currentUser) {
+    noBlog.innerHTML = `<div class="bg-black text-white p-4 rounded-md text-center text-xl">
+  Please login to view your blogs
+  </div>`;
+  return;
+  }
+
   if (blog_arr.length === 0) {
-    display.innerHTML = "No Blog found yet";
+    noBlog.innerHTML = `<div class="bg-gray-100 text-2xl text-gray-700 p-8 rounded-lg text-center">
+    <p class="text-2xl font-medium mb-2">📭 No Blogs Yet</p>
+     <p class="text-lg">You haven't created any blogs yet. Start writing your first blog!</p>
+    </div>`;
     return;
   }
 
+  blogHead.innerHTML += `
+    <h2 class="text-3xl font-bold text-primary bg-white p-4 rounded-md shadow-md mb-6">
+      Your Previous Blogs 📝
+    </h2>
+  `;
+
   blog_arr.forEach((items) => {
     display.innerHTML += `
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
     <article class="flex-1">
         <h2 class="text-4xl font-bold mb-4">${items.Placeholder}</h2>
         <div class="prose max-w-none mb-8">
             <p>${items.Blog}</p>
         </div>
       
-    <p> ${items.time ? items.time.toDate() : "no time"}</p>
+    <p> ${
+      items.time
+        ? items.time.toDate().toLocaleString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        : "no time"
+    }</p>
     </br>
       <div class="flex space-x-4">
             <button data-index=${index} id="edit-btn" class="btn btn-primary">Edit</button>

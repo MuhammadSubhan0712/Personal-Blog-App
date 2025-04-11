@@ -4,14 +4,13 @@ import {
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
-import { 
-  collection, 
-  addDoc 
+import {
+  collection,
+  addDoc,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-import { auth , db } from "./config.js";
-
-
+import { auth, db } from "./config.js";
 
 // Declare Variables
 
@@ -27,42 +26,35 @@ const password = document.querySelector("#password");
 
 const display = document.querySelector("#para");
 
-
-
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const auth = getAuth();
 
   try {
-   const userCredential = await 
-   createUserWithEmailAndPassword(
-     auth,
-     email.value,
-     password.value
-   );
-      const user = userCredential.user;
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+    const user = userCredential.user;
 
-      // Here store user info in firestore
-      await addDoc (collection (db , "users") ,{
-        uid: user.uid,
-        firstName : fname.value,
-        lastName : lname.value,
-        email: email.value
-      });
+    // Here store user info in firestore
+    await setDoc(collection(db, "users", user.uid), {
+      uid: user.uid,
+      firstName: fname.value,
+      lastName: lname.value,
+      email: email.value,
+      createAt: serverTimestamp(),
+    });
 
-      display.innerHTML = " Registration Done successfully ";
-      fname.value = "";
-      lname.value = "";
-      email.value = "";
-      password.value = "";
-      window.location = "login.html";
+    display.innerHTML = " Registration Done successfully ";
+    fname.value = "";
+    lname.value = "";
+    email.value = "";
+    password.value = "";
+
+    setTimeout(() => (window.location = "login.html"), 1500);
   } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-
-    console.log(errorCode);
-    console.log(errorMessage);
-
-    display.innerHTML = `${errorMessage}`;
+    console.error("Registration error", error);
+    display.innerHTML = `Registration Failed: ${error.message}`;
   }
 });
