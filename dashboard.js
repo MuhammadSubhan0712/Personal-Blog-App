@@ -120,7 +120,7 @@ export async function readdata() {
 
 // Function to render blogs data with edit delete option:
 export function renderdata() {
-  display.innerHTML = "";
+  // display.innerHTML = "";
 
   if (!currentUser) {
     noBlog.innerHTML = `<div class="bg-black text-white p-4 rounded-md text-center text-xl">
@@ -136,10 +136,10 @@ export function renderdata() {
     </div>`;
     return;
   }
-
-  blogHead.innerHTML += `
+  try {
+    blogHead.innerHTML = `
     <h2 class="text-3xl font-bold text-primary bg-white p-4 rounded-md shadow-md mb-6">
-      Your Previous Blogs 📝
+      Your Blogs 📝
     </h2>
   `;
 
@@ -221,6 +221,10 @@ export function renderdata() {
       }
     });
   });
+  } catch (error) {
+    console.error("Error adding blog", error);
+    display.innerHTML = `Error adding Blogs ${error.message}`;
+  }
 }
 
 // ---------------------------------------------------------

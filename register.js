@@ -1,13 +1,12 @@
 // Import function of firebase
 import {
-  getAuth,
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 import {
-  collection,
-  addDoc,
+  doc,
   setDoc,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 import { auth, db } from "./config.js";
@@ -38,7 +37,7 @@ form.addEventListener("submit", async (event) => {
     const user = userCredential.user;
 
     // Here store user info in firestore
-    await setDoc(collection(db, "users", user.uid), {
+    await setDoc(doc(db, "users", user.uid), {
       uid: user.uid,
       firstName: fname.value,
       lastName: lname.value,
