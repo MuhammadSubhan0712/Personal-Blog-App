@@ -40,7 +40,7 @@ logout.addEventListener("click", () => {
     .then(() => {
       console.log("Logout succesfully");
       alert("Logout succesfully");
-      window.location = "login.html";
+      window.location = "index.html";
     })
     .catch((error) => {
       console.log(error);
