@@ -10,16 +10,43 @@ const display = document.querySelector("#main");
 
 let Allblogs = [];
 
+// Function loader
+function showLoader (){
+  display.innerHTML = 
+  `<div class="loader-container flex justify-center item-center py-12">
+  <div class="loader"></div>
+  </div>`
+}
+
+// To hide loader
+function hideLoader (){
+  const loader = document.querySelector(".loader-container");
+  if (loader) 
+  loader.remove 
+}
 // Asynchronous Function to read the data:
 async function readdata() {
-  const q = query(collection(db, "blogs"));
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
-    Allblogs.push({ ...doc.data(), id: doc.id });
-  });
-  // console.log(blog_arr);
-  renderdata();
+  showLoader(); //before fetching data:
+
+  try {
+    const q = query(collection(db, "blogs"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+      Allblogs.push({ ...doc.data(), id: doc.id });
+    });
+    // console.log(blog_arr);
+    renderdata();
+  } catch (error) {
+       console.error("Error fetching blogs:", error);
+    display.innerHTML = `
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        Failed to load blogs. Please try again later.
+      </div>`
+  }
+  finally {
+    hideLoader(); 
+  }
 }
 readdata();
 
@@ -64,3 +91,4 @@ function renderdata() {
     `;
   });
 }
+

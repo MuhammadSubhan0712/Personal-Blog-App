@@ -44,7 +44,10 @@
   } */
 
 
-  /* Add to your stylesheet */
+  .loader-container {
+    min-height: 200px;
+  }
+  /* For main page */
   .loader {
     width: 48px;
     height: 48px;
