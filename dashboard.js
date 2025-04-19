@@ -1,5 +1,4 @@
 import {
-  getAuth,
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
@@ -21,10 +20,18 @@ import { auth, db } from "./config.js";
 
 // Authentication state check:
 let currentUser = null;
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     currentUser = user;
-    readdata();
+    readdata().then(()=>{    
+    if (blog_arr.length === 0) {
+      BlogHead.innerHTML = `<div class="bg-gray-100 text-2xl text-gray-700 p-8 rounded-lg text-center">
+        <p class="text-2xl font-medium mb-2">📭 No Blogs Yet</p>
+        <p class="text-lg">You haven't created any blogs yet. Start writing your first blog!</p>
+      </div>`;
+    } 
+  });
   } else {
     window.location = "index.html";
   }
@@ -57,15 +64,15 @@ const blog = document.querySelector("#blog");
 
 const display = document.querySelector("#main");
 
-const noBlog = document.querySelector("#noblog");
-
-const blogHead = document.querySelector("#bloghead");
+const BlogHead = document.querySelector("#blogs");
 
 let blog_arr = [];
 
 // Add Event listener blog form:
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+// Disable form during submission
+form.querySelector('button[type="submit"]').disabled = true;
 
   if (!currentUser) {
     alert("Please Login first");
@@ -77,84 +84,104 @@ form.addEventListener("submit", async (event) => {
       userId: currentUser.uid,
       Placeholder: placeholder.value,
       Blog: blog.value,
-      time: Timestamp.fromDate(new Date()),
+      Time: Timestamp.fromDate(new Date()),
     });
 
-    console.log("Document written with ID: ", docRef.id);
-    blog_arr.push({
-      userId: currentUser.uid,
-      Placeholder: placeholder.value,
-      id: docRef.id,
-      Blog: blog.value,
-      time: Timestamp.fromDate(new Date()),
-    });
+    await readdata();
 
-    renderdata();
+    // console.log("Document written with ID: ", docRef.id);
+    // blog_arr.push({
+    //   userId: currentUser.uid,
+    //   Placeholder: placeholder.value,
+    //   id: docRef.id,
+    //   Blog: blog.value,
+    //   Time: Timestamp.fromDate(new Date()),
+    // });
+
+    // renderdata();
 
     placeholder.value = "";
     blog.value = "";
+
   } catch (e) {
     console.error("Error adding document: ", e);
+    alert("Failed to add blog");
   }
+  // Enable after
+form.querySelector('button[type="submit"]').disabled = false;
 });
 
 // Read only current user's blogs:
 export async function readdata() {
   if (!currentUser) return;
 
-  blog_arr = [];
-  const q = query(
-    collection(db, "blogs"),
-    where("userId", "==", currentUser.uid),
-    orderBy("time", "desc")
-  );
-
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    blog_arr.push({ ...doc.data(), id: doc.id });
+  try {
+    const q = query(
+      collection(db, "blogs"),
+      where("userId", "==", currentUser.uid),
+      orderBy("Time", "desc")
+    );
+    const querySnapshot = await getDocs(q);
+    blog_arr = [];
+    querySnapshot.forEach((doc) => {
+      blog_arr.push({ 
+      ...doc.data(), 
+      id: doc.id,
+    Time: doc.data().Time 
   });
-  console.log(blog_arr);
-  renderdata();
+  });
+    console.log(blog_arr);
+    renderdata();
+  }
+  catch (error) {
+    console.error("Error reading data:", error);
+    display.innerHTML = `<div class="text-center text-2xl font-bold text-red-500">!!Error loading blogs!!</div>`;
+  }
+  
 }
 // ---------------------------------------------------------
 
 // Function to render blogs data with edit delete option:
 export function renderdata() {
-  // display.innerHTML = "";
-
+  
+  display.innerHTML = "";
+  BlogHead.innerHTML = "";
+ 
+  
+  try {
   if (!currentUser) {
-    noBlog.innerHTML = `<div class="bg-black text-white p-4 rounded-md text-center text-xl">
+    BlogHead.innerHTML = `<div class="bg-black text-white p-4 rounded-md text-center text-xl">
   Please login to view your blogs
   </div>`;
   return;
   }
 
   if (blog_arr.length === 0) {
-    noBlog.innerHTML = `<div class="bg-gray-100 text-2xl text-gray-700 p-8 rounded-lg text-center">
+    BlogHead.innerHTML = `
+    <div class="bg-gray-100 text-2xl text-gray-700 p-8 rounded-lg text-center">
     <p class="text-2xl font-medium mb-2">📭 No Blogs Yet</p>
      <p class="text-lg">You haven't created any blogs yet. Start writing your first blog!</p>
     </div>`;
     return;
   }
-  try {
-    blogHead.innerHTML = `
-    <h2 class="text-3xl font-bold text-primary bg-white p-4 rounded-md shadow-md mb-6">
+  else {
+    BlogHead.innerHTML = `
+     <h2 class="text-3xl font-bold text-primary bg-white p-4 rounded-md shadow-md mb-">
       Your Blogs 📝
-    </h2>
-  `;
-
+      </h2>
+    `
   blog_arr.forEach((items) => {
     display.innerHTML += `
-    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+    <div class="blog-card bg-white p-6 rounded-lg shadow-md mb-8">
     <article class="flex-1">
-        <h2 class="text-4xl font-bold mb-4">${items.Placeholder}</h2>
-        <div class="prose max-w-none mb-8">
-            <p>${items.Blog}</p>
+        <h2 class="text-4xl font-bold mb-4 text-gray-800">${items.Placeholder}</h2>
+        <div class="prose max-w-none mb-6 text-gray-700">
+            <p class="text-lg">${items.Blog}</p>
         </div>
       
-    <p> ${
-      items.time
-        ? items.time.toDate().toLocaleString("en-US", {
+    <p class="text-gray-500 mb-4"> ${
+      items.Time
+        ? items.Time.toDate().toLocaleString("en-US", {
             year: "numeric",
             month: "short",
             day: "numeric",
@@ -163,40 +190,41 @@ export function renderdata() {
           })
         : "no time"
     }</p>
-    </br>
-      <div class="flex space-x-4">
-            <button data-index=${index} id="edit-btn" class="btn btn-primary">Edit</button>
-            <button data-index=${index} id="delete-btn" class="btn btn-danger">Delete</button>
+    
+      <div class="flex justify-between mt-3 space-x-4">
+            <button data-id=${items.id} class="btn btn-info edit-btn">Edit</button>
+            <button data-id=${items.id} class="btn bg-red-600 delete-btn">Delete</button>
         </div>
     </article>
     </div>
-    <hr/>`;
+    `;
   });
 
   // ---------------------------------------------------------
 
   // Foreach Add Event listener for Edit Button:
 
-  const editBtn = document.querySelectorAll("#edit-btn");
+  const editBtn = document.querySelectorAll(".edit-btn");
 
   editBtn.forEach((btn) => {
     btn.addEventListener("click", async () => {
-      const index = btn.getAttribute("data-index");
+      const blogId = btn.getAttribute('data-id');
+      const blog = blog_arr.find(b => b.id === blogId);
       const updatepl = prompt(
         "Enter placeholder to update",
-        blog_arr[index].Placeholder
+        blog.Placeholder
       );
-      const updatebl = prompt("Enter blog to update", blog_arr[index].Blog);
+      const updatebl = prompt("Enter blog to update", blog.Blog);
 
       if (updatepl && updatebl) {
-        const toUpdate = doc(db, "blogs", blog_arr[index].id);
+        const toUpdate = doc(db, "blogs", blogId);
         await updateDoc(toUpdate, {
           Placeholder: updatepl,
           Blog: updatebl,
         });
         console.log("Values has been Updated");
-        blog_arr[index].Placeholder = updatepl;
-        blog_arr[index].Blog = updatebl;
+        blog.Placeholder = updatepl;
+        blog.Blog = updatebl;
         renderdata();
       }
     });
@@ -206,25 +234,26 @@ export function renderdata() {
 
   // Foreach Add Event listener for Delete Button:
 
-  const deleteBtn = document.querySelectorAll("#delete-btn");
+  const deleteBtn = document.querySelectorAll(".delete-btn");
 
   deleteBtn.forEach((btn) => {
     btn.addEventListener("click", async () => {
-      const index = btn.getAttribute("data-index");
-
+      
+      const blogId = btn.getAttribute('data-id');
       if (confirm("Are you sure you want to delete this blog?")) {
-        await deleteDoc(doc(db, "blogs", blog_arr[index].id));
+        await deleteDoc(doc(db, "blogs", blogId));
         console.log("Blog Deleted successfully");
         display.innerHTML = `Blog Deleted successfully`;
-        blog_arr.splice(index, 1);
+        blog_arr = blog_arr.filter(b => b.id !== blogId);
         renderdata();
       }
     });
   });
-  } catch (error) {
-    console.error("Error adding blog", error);
-    display.innerHTML = `Error adding Blogs ${error.message}`;
-  }
 }
 
+  } catch (error) {
+    console.error("Error displaying blog", error);
+    display.innerHTML = `<div class="text-red-500 p-4">Error displaying blogs: ${error.message}</div>`;
+  }
+}
 // ---------------------------------------------------------

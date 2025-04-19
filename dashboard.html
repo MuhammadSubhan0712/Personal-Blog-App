@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
 
+    <link rel="stylesheet" href="app.css">
+
     <!-- Tailwind CDN -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -19,7 +21,7 @@
   <body class="relative flex flex-col items-center min-h-screen bg-base-300">
     <!-- Navbar -->
     <div
-      class="bg-primary text-white w-full h-12 p-3 flex justify-between items-center shadow-lg">
+      class="bg-primary text-white w-full h-15 p-3 flex justify-between items-center shadow-lg">
       <a href="./index.html" class="text-2xl font-extrabold tracking-wide"
         >Personal Blogging App</a
       >
@@ -56,7 +58,7 @@
           <textarea
             id="blog"
             name="blog"
-            class="textarea textarea-bordered w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            class="textarea textarea-bordered w-full p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="What’s on your mind?"></textarea>
         </div>
 
@@ -71,14 +73,10 @@
       </form>
     </div>
 
-   <!-- No Blog heading -->
-   <div id="noblog" class="w-full max-w-lg mt-5">
     
-   </div>
-
     <!-- Blog Render Section -->
-    <div id="bloghead" class="w-full text-center max-w-lg mt-10">
-    
+    <div id="blogs" class="w-full text-center max-w-lg mt-5">
+   
     </div>
 
     <!-- Blog Container -->
@@ -89,7 +87,8 @@
     </main>
 
     <!-- ------------------------------------------------------------- -->
-
     <script type="module" src="dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
   </body>
 </html>
